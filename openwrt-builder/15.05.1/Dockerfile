@@ -1,4 +1,5 @@
-FROM nmaas87/ubuntu-openwrt-base:latest as BUILD
+#FROM nmaas87/ubuntu-openwrt-base:latest as BUILD
+FROM nmaas87/ubuntu-openwrt-base:latest
 MAINTAINER Nico Maas <mail@nico-maas.de>
 ENV DEBIAN_FRONTEND noninteractive
 USER openwrt
@@ -23,6 +24,6 @@ RUN date && \
     date
 #CMD ["/bin/bash"]
 
-FROM scratch
-MAINTAINER Nico Maas <mail@nico-maas.de>
-COPY --from=BUILD /home/openwrt/openwrt/bin/brcm2708 /
+#FROM scratch
+#MAINTAINER Nico Maas <mail@nico-maas.de>
+#COPY --from=BUILD /home/openwrt/openwrt/bin/brcm2708 /
