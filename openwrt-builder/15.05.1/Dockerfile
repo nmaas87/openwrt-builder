@@ -21,7 +21,8 @@ RUN date && \
     echo CONFIG_TARGET_ROOTFS_TARGZ=y >> .config && \
     make prereq && \
     make -j1 V=s && \
-    date
+    date && \
+    mv bin/brcm2708 ~/ && cd ~ && rm -rf openwrt
 #CMD ["/bin/bash"]
 
 #FROM scratch
