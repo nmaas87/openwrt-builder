@@ -1,12 +1,7 @@
-FROM nmaas87/ubuntu-openwrt-base:latest
-
+FROM nmaas87/ubuntu-openwrt-base:latest as BUILD
 MAINTAINER Nico Maas <mail@nico-maas.de>
-
 ENV DEBIAN_FRONTEND noninteractive
-
 USER openwrt
-
-# clone openwrt repo: Chaos Calmer 15.05
 RUN cd ~ && git clone --depth=1 -b chaos_calmer git://github.com/openwrt/openwrt.git && \
     cd openwrt && \
     ./scripts/feeds update -a && \
@@ -23,5 +18,8 @@ RUN cd ~ && git clone --depth=1 -b chaos_calmer git://github.com/openwrt/openwrt
     echo CONFIG_TARGET_ROOTFS_TARGZ=y >> .config && \
     make prereq && \
     make -j1 V=s
+#CMD ["/bin/bash"]
 
-CMD ["/bin/bash"]
+FROM scratch
+MAINTAINER Nico Maas <mail@nico-maas.de>
+COPY --from=BUILD /home/openwrt/openwrt/bin/brcm2708/* /
