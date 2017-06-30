@@ -5,7 +5,7 @@ MAINTAINER Nico Maas <mail@nico-maas.de>
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update -y -qq && \
-    apt-get install -y --no-install-recommends git-core subversion mercurial nano sudo wget \
+    apt-get install -y git-core subversion mercurial nano sudo wget \
         build-essential libssl-dev libncurses5-dev unzip gawk zlib1g-dev && \
 
 # clean up
